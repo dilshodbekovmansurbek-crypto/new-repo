@@ -1,0 +1,858 @@
+     * {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background: #0f172a;
+    color: white;
+    padding: 16px;
+    min-height: 100vh;
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 24px;
+    color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    cursor: pointer;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    border: 2px solid #3b82f6;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+}
+
+h2 {
+    font-size: 16px;
+}
+
+.habit-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.habit {
+    background: #1e293b;
+    padding: 12px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease, background 0.3s ease;
+    border: 1px solid #334155;
+    gap: 10px;
+}
+
+.habit span {
+    flex: 1;
+    word-break: break-word;
+    font-size: 14px;
+}
+
+.habit:hover {
+    transform: scale(1.02);
+    background: #334155;
+    border-color: #475569;
+}
+
+.habit button {
+    background: #22c55e;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.1s ease;
+    font-weight: 600;
+    flex-shrink: 0;
+    font-size: 14px;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.habit button:hover {
+    background: #16a34a;
+}
+
+.habit button:active {
+    transform: scale(0.95);
+}
+
+.habit button[style*="background:#ef4444"] {
+    background: #ef4444 !important;
+}
+
+.habit button[style*="background:#ef4444"]:hover {
+    background: #dc2626 !important;
+}
+
+#penaltyList {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* dashboard */
+
+/* dashboard */
+/* Dashboard Animations */
+
+input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #334155;
+    margin-bottom: 10px;
+    background: #1e293b;
+    color: white;
+    transition: border-color 0.3s ease;
+    font-size: 14px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    background: #0f172a;
+}
+
+.add-btn {
+    margin-top: 20px;
+    background: #3b82f6;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    width: 100%;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.1s ease;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.add-btn:hover {
+    background: #2563eb;
+}
+
+.add-btn:active {
+    transform: scale(0.98);
+}
+
+
+/* Statistics container */
+.stats-container {
+    margin-top: 12px;
+    background: #1e293b;
+    padding: 16px;
+    border-radius: 12px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.stat-card {
+    background: #0f172a;
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 4px solid;
+}
+
+.stat-card-value {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.stat-card-label {
+    font-size: 11px;
+    color: #94a3b8;
+    margin-bottom: 3px;
+}
+
+.stat-card-detail {
+    font-size: 10px;
+    color: #64748b;
+}
+
+.week-trend-container {
+    background: #0f172a;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.week-trend-label {
+    font-size: 11px;
+    color: #94a3b8;
+    margin-bottom: 8px;
+}
+
+#weekTrend {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 50px;
+    gap: 4px;
+}
+
+#weekTrend > div {
+    width: 10px !important;
+}
+@media (min-width: 480px) and (max-width: 599px) {
+    body {
+        padding: 12px;
+    }
+
+    h1 {
+        font-size: 22px;
+        margin-bottom: 18px;
+    }
+
+    .habit {
+        padding: 11px;
+    }
+
+    .habit span {
+        font-size: 14px;
+    }
+
+    .habit button {
+        padding: 6px 12px;
+        font-size: 14px;
+        min-height: 40px;
+    }
+
+    .add-btn {
+        margin-top: 20px;
+        font-size: 15px;
+        min-height: 40px;
+    }
+
+    #dashboard {
+        margin-bottom: 20px !important;
+    }
+
+    #dashboard > div {
+        margin: 0 auto 14px !important;
+    }
+
+    #dashboard svg {
+        width: 120px !important;
+        height: 120px !important;
+    }
+    #persent {
+        margin-right: 500px !important;
+    }
+    .cycle {
+        margin: 45px auto;
+        position: absolute !important;
+        left: 27% !important;
+        top: 10% !important;
+    }
+
+    #percentText {
+        font-size: 24px !important;
+    }
+
+    #statsText {
+        font-size: 14px !important;
+    }
+
+    .stats-container {
+        padding: 14px;
+        margin-top: 12px;
+    }
+
+    .stats-grid {
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 12px;
+    }
+
+    .stat-card-value {
+        font-size: 21px;
+    }
+
+    .stat-card-label {
+        font-size: 11px;
+    }
+
+    #weekTrend {
+        height: 45px;
+        gap: 3px;
+    }
+
+    #weekTrend > div {
+        width: 10px !important;
+    }
+}
+/* Dashboard removed: hide any leftover */
+/* Dashboard styles */
+#dashboard {
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+/* Tablet styles (600px and above) */
+@media (min-width: 600px) {
+    body {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    .habit-container {
+        gap: 15px;
+    }
+
+    .habit {
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    .habit span {
+        font-size: 16px;
+    }
+
+    .habit button {
+        padding: 8px 15px;
+        font-size: 16px;
+    }
+
+    input {
+        font-size: 16px;
+    }
+
+    .add-btn {
+        font-size: 16px;
+        margin-top: 30px;
+    }
+
+    #dashboard {
+        margin-bottom: 30px !important;
+    }
+
+    #dashboard > div {
+        margin: 0 auto 20px !important;
+    }
+
+    #dashboard svg {
+        width: 150px !important;
+        height: 150px !important;
+    }
+
+    .cycle {
+        margin: 45px auto !important;
+        position: absolute !important;
+        left: 25% !important;
+        top: 5% !important;
+    }
+
+    #percentText {
+        font-size: 32px !important;
+    }
+
+    #statsText {
+        font-size: 16px !important;
+    }
+
+    .stats-container {
+        padding: 20px;
+        margin-top: 16px;
+    }
+
+    .stats-grid {
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .stat-card-value {
+        font-size: 24px;
+    }
+
+    .stat-card-label {
+        font-size: 12px;
+    }
+
+    .stat-card-detail {
+        font-size: 11px;
+    }
+
+    .week-trend-container {
+        padding: 15px;
+    }
+
+    .week-trend-label {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    #weekTrend {
+        height: 60px;
+        gap: 5px;
+    }
+
+    #weekTrend > div {
+        width: 12px !important;
+    }
+}
+
+/* Desktop styles (900px and above) */
+@media (min-width: 900px) {
+    body {
+        padding: 30px;
+    }
+
+    h1 {
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
+
+    .habit-container {
+        max-width: 700px;
+        gap: 15px;
+    }
+
+    .habit {
+        padding: 16px;
+    }
+
+    .add-btn {
+        max-width: 700px;
+    }
+
+    #dashboard {
+        margin-bottom: 40px !important;
+    }
+
+    #dashboard > div {
+        margin: 0 auto 25px !important;
+    }
+
+    #dashboard svg {
+        width: 160px !important;
+        height: 160px !important;
+    }
+
+    .cycle {
+        margin: 45px auto !important;
+    }
+
+    #percentText {
+        font-size: 36px !important;
+    }
+
+    #statsText {
+        font-size: 18px !important;
+    }
+
+    .stats-container {
+        max-width: 700px;
+        margin-top: 20px;
+        padding: 24px;
+    }
+
+    .stats-grid {
+        gap: 16px;
+    }
+
+    #weekTrend {
+        height: 70px;
+    }
+
+    #weekTrend > div {
+        width: 14px !important;
+    }
+}
+
+/* Large desktop (1200px and above) */
+@media (min-width: 1200px) {
+    .habit-container {
+        max-width: 800px;
+    }
+
+    .habit:hover {
+        transform: scale(1.03);
+    }
+
+    .add-btn {
+        max-width: 800px;
+    }
+
+    .stats-container {
+        max-width: 800px;
+    }
+
+    #dashboard {
+        margin-bottom: 40px !important;
+    }
+
+    #dashboard svg {
+        width: 170px !important;
+        height: 170px !important;
+    }
+
+    .cycle {
+        margin: 45px auto !important;
+        position: absolute !important;
+        left: 24.5% !important;
+    }
+
+    #percentText {
+        font-size: 38px !important;
+    }
+
+    #statsText {
+        font-size: 18px !important;
+    }
+}
+
+/* Small mobile (320px - 480px) */
+@media (max-width: 480px) {
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+        padding: 10px;
+        overflow-x: hidden;
+    }
+
+    h1 {
+        font-size: 18px;
+        margin-bottom: 12px;
+        word-break: break-word;
+    }
+
+    h2 {
+        font-size: 13px;
+        margin: 8px 0;
+        font-weight: 600;
+    }
+
+    .habit-container {
+        gap: 10px;
+        margin: 0 auto;
+        max-width: 100%;
+    }
+
+    .habit {
+        padding: 10px;
+        gap: 8px;
+        border-radius: 10px;
+    }
+
+    .habit span {
+        font-size: 13px;
+        line-height: 1.4;
+        word-break: break-word;
+    }
+
+    .habit button {
+        padding: 6px 10px;
+        font-size: 13px;
+        border-radius: 6px;
+        min-width: 40px;
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    input {
+        padding: 10px;
+        margin-bottom: 8px;
+        font-size: 14px;
+        border-radius: 8px;
+        width: 100%;
+    }
+
+    input::placeholder {
+        font-size: 12px;
+        opacity: 0.7;
+    }
+
+    .add-btn {
+        padding: 10px;
+        margin-top: 12px;
+        font-size: 13px;
+        border-radius: 10px;
+        min-height: 40px;
+        font-weight: 600;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #dashboard {
+        margin-bottom: 16px !important;
+        text-align: center;
+        padding: 0 5px;
+    }
+
+    #dashboard > div {
+        margin: 0 auto 12px !important;
+        display: inline-flex !important;
+        position: relative !important;
+    }
+
+    #dashboard svg {
+        width: 100px !important;
+        height: 100px !important;
+        margin: 45px auto !important;
+    }
+
+    .cycle {
+        position: absolute !important;
+        left: 29% !important;
+        top: 12% !important;
+    }
+
+    #percentText {
+        font-size: 20px !important;
+        font-weight: bold;
+        margin: 0;
+        color: #22c55e;
+        line-height: 1;
+    }
+
+    #statsText {
+        font-size: 12px !important;
+        margin-top: 6px !important;
+        color: #cbd5e1;
+    }
+
+    .stats-container {
+        padding: 12px;
+        margin-top: 12px;
+        border-radius: 10px;
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+
+    .stat-card {
+        padding: 10px;
+        border-radius: 6px;
+        border-left-width: 3px;
+    }
+
+    .stat-card-value {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 2px;
+        line-height: 1.2;
+    }
+
+    .stat-card-label {
+        font-size: 10px;
+        color: #94a3b8;
+        margin-bottom: 2px;
+    }
+
+    .stat-card-detail {
+        font-size: 9px;
+        color: #64748b;
+        word-break: break-word;
+    }
+
+    .week-trend-container {
+        padding: 10px;
+        border-radius: 6px;
+        background: #0f172a;
+    }
+
+    .week-trend-label {
+        font-size: 10px;
+        color: #94a3b8;
+        margin-bottom: 6px;
+        font-weight: 500;
+    }
+
+    #weekTrend {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        height: 35px;
+        gap: 2px;
+    }
+
+    #weekTrend > div {
+        width: 8px !important;
+        min-height: 2px !important;
+        border-radius: 2px;
+        transition: all 0.2s ease;
+    }
+
+    #weekTrend > div:hover {
+        opacity: 0.8;
+        transform: scaleY(1.1);
+    }
+}
+
+/* Extra small mobile (280px - 320px) */
+@media (max-width: 320px) {
+    body {
+        padding: 8px;
+    }
+
+    h1 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    h2 {
+        font-size: 12px;
+    }
+
+    .habit {
+        padding: 8px;
+    }
+
+    .habit span {
+        font-size: 12px;
+    }
+
+    .habit button {
+        padding: 5px 8px;
+        font-size: 12px;
+        min-width: 36px;
+        min-height: 36px;
+    }
+
+    input {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .add-btn {
+        padding: 8px;
+        font-size: 12px;
+        min-height: 36px;
+    }
+
+    #dashboard {
+        margin-bottom: 14px !important;
+    }
+
+    #dashboard > div {
+        margin: 0 auto 10px !important;
+    }
+
+    #dashboard svg {
+        width: 80px !important;
+        height: 80px !important;
+    }
+
+    .cycle {
+        position: absolute !important;
+        left: 30% !important;
+        top: 15% !important;
+    }
+
+    #percentText {
+        font-size: 16px !important;
+    }
+
+    #statsText {
+        font-size: 10px !important;
+    }
+
+    .stats-container {
+        padding: 10px;
+        margin-top: 12px;
+    }
+
+    .stats-grid {
+        gap: 6px;
+        margin-bottom: 6px;
+    }
+
+    .stat-card {
+        padding: 8px;
+    }
+
+    .stat-card-value {
+        font-size: 16px;
+    }
+
+    .stat-card-label {
+        font-size: 9px;
+    }
+
+    .stat-card-detail {
+        font-size: 8px;
+    }
+
+    .week-trend-container {
+        padding: 8px;
+    }
+
+    .week-trend-label {
+        font-size: 9px;
+        margin-bottom: 4px;
+    }
+
+    #weekTrend {
+        height: 30px;
+        gap: 2px;
+    }
+
+    #weekTrend > div {
+        width: 6px !important;
+    }
+}
