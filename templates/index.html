@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <h1><img src="imgs/photo_2026-02-19_10-36-11.jpg" alt="" class="logo"> Habit Tracker</h1>
+
+    <input type="text" id="habitInput" placeholder="Yangi odat yoz...">
+
+    <button class="add-btn" onclick="addHabit()">➕ Odat qo'shish</button>
+
+    <div class="habit-container" id="habitList"></div>
+          
+    <div id="dashboard" style="margin-bottom:30px; text-align:center; display:flex; justify-content:center; align-items:center; flex-direction:column; animation: fadeInSlideUp 0.8s ease-out;">
+        <div style="position:relative; width:240px; height:240px; margin:0 auto 20px; animation: slideUp 0.7s ease-out 0.1s both;">
+            <svg class="cycle" width="240" height="240" viewBox="0 0 200 200" style="transform: rotate(-90deg); display:block; filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.2)); animation: rotateRing 20s linear infinite;">
+                <!-- Fon doirasi -->
+                <circle cx="100" cy="100" r="90" fill="none" stroke="#475569" stroke-width="8"/>
+                <!-- Progress doirasi -->
+                <circle id="progressCircle" cx="100" cy="100" r="90" fill="none" stroke="#3b82f6" 
+                    stroke-width="8" stroke-dasharray="565 565" stroke-linecap="round"
+                    style="transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1); stroke: url(#progressGrad);"/>
+                <defs>
+                    <linearGradient id="progressGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            <div class="percent" style="position:absolute; top:47%; left:40%; transform:translate(-50%, -50%); text-align:center; width:auto; z-index:10; animation: scaleIn 0.6s ease-out 0.3s both;">
+                <div id="percentText" style="font-size:56px; font-weight:800; background:linear-gradient(135deg, #3b82f6, #10b981); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; margin:0;">0%</div>
+            </div>
+        </div>
+        <p id="statsText" style="margin:0; font-size:16px; color:#e2e8f0; animation: slideUp 0.7s ease-out 0.2s both;">0 / 0 odat</p>
+    </div>
+
+    <style>
+        @keyframes fadeInSlideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes rotateRing {
+            from { filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.2)); }
+            to { filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.2)); }
+        }
+    </style>
+
+    <!-- Oylik va yilik statistikalar -->
+    <div class="stats-container">
+        <h2 style="margin-top:0;">📊 Statistikalar</h2>
+        
+        <div class="stats-grid">
+            <!-- Oylik -->
+            <div class="stat-card" style="border-color: #3b82f6;">
+                <div class="stat-card-label">Bu oyda</div>
+                <div class="stat-card-value" style="color:#3b82f6;" id="monthlyPercent">0%</div>
+                <div class="stat-card-detail" id="monthlyStats">0 / 0 odat</div>
+            </div>
+            
+            <!-- Yillik -->
+            <div class="stat-card" style="border-color: #f59e0b;">
+                <div class="stat-card-label">Bu yilda</div>
+                <div class="stat-card-value" style="color:#f59e0b;" id="yearlyPercent">0%</div>
+                <div class="stat-card-detail" id="yearlyStats">0 / 0 odat</div>
+            </div>
+        </div>
+
+        <!-- Kunlik trends -->
+        <div class="week-trend-container">
+            <div class="week-trend-label">O'tgan 7 kunlik trends</div>
+            <div id="weekTrend">
+                <div style="width:12px; background:#475569; border-radius:2px; height:30%;"></div>
+                <div style="width:12px; background:#475569; border-radius:2px; height:40%;"></div>
+                <div style="width:12px; background:#475569; border-radius:2px; height:35%;"></div>
+                <div style="width:12px; background:#475569; border-radius:2px; height:45%;"></div>
+                <div style="width:12px; background:#475569; border-radius:2px; height:50%;"></div>
+                <div style="width:12px; background:#475569; border-radius:2px; height:60%;"></div>
+                <div style="width:12px; background:#22c55e; border-radius:2px; height:55%;"></div>
+            </div>
+        </div>
+
+        <!-- Jazo ro'yxati -->
+        <div class="week-trend-container" style="margin-top:12px;">
+            <div class="week-trend-label">⚡ Bugungi jazolar</div>
+            <div id="penaltyList" style="font-size:12px; color:#cbd5e1; line-height:1.6;">
+                <div style="color:#64748b;">Jazo yo'q 😊</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
